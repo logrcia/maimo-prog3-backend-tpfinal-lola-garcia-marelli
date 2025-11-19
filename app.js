@@ -22,14 +22,11 @@ app.set("port", process.env.PORT || 4000);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: process.env.FRONT_URL.split(","), 
-    methods: "GET,POST,PUT,DELETE,OPTIONS",
-    credentials: true,
-    exposedHeaders: "Authorization",
-  })
-);
+app.use(cors({
+  origin: process.env.FRONT_URL,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 /* Routes */
 app.use("/", indexRoutes);
