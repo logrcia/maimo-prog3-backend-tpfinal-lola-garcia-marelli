@@ -10,17 +10,12 @@ const connectDb = async () => {
   }
   connectionString += `${process.env.DB_HOST}/${process.env.DB_NAME}`;
 
-  mongoose
-    .connect(`${connectionString}?retryWrites=true&w=majority`, {
+  mongoose.connect(`${connectionString}${process.env.DB_OPTIONS}`, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
     .then(() => console.log(chalk.green("Conected to database")))
-    .catch((err) =>
-      console.log(
-        chalk.bgRed.white("Database not connected", err.code, err.input)
-      )
-    );
+    .catch((err) => console.log("Database not connected", err));
 };
 
 const disconnectDb = async () => {
