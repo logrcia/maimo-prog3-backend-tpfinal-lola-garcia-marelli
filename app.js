@@ -24,13 +24,8 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "local"
-        ? [`http://${process.env.FRONT_URL}`]
-        : [
-            `https://${process.env.FRONT_URL}`,
-            `https://www.${process.env.FRONT_URL}`,
-          ],
+    origin: process.env.FRONT_URL.split(","), 
+    methods: "GET,POST,PUT,DELETE,OPTIONS",
     credentials: true,
     exposedHeaders: "Authorization",
   })
