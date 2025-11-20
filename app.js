@@ -22,10 +22,12 @@ app.set("port", process.env.PORT || 4000);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(cors({
-  origin: process.env.FRONT_URL,
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: process.env.FRONT_URL,
+    credentials: true
+  })
+);
 
 /* Routes */
 app.use("/", indexRoutes);
